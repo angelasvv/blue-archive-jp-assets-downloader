@@ -32,9 +32,10 @@ python3 ./download_assets.py
 ```pwsh
 $ python .\download_assets.py
 ...
-2023-01-25 11:49:19,149 - __main__.<module> - INFO - Script finished.
-2023-01-25 11:49:19,149 - __main__.<module> - INFO - Bundle: 3027 total, 0 downloaded, 3027 skipped.
-2023-01-25 11:49:19,149 - __main__.<module> - INFO - Media: 11251 total, 0 downloaded, 11251 skipped.
+2023-02-17 09:42:18,684 - __main__.<module> - INFO - Script finished.
+2023-02-17 09:42:18,684 - __main__.<module> - INFO - Bundle: 3057 total, 0 downloaded, 3057 skipped.
+2023-02-17 09:42:18,685 - __main__.<module> - INFO - Media: 11325 total, 0 downloaded, 11325 skipped.
+2023-02-17 09:42:18,685 - __main__.<module> - INFO - table: 240 total, 0 downloaded, 240 skipped.
 ```
 
 ### 服务器维护时 (资源不可达) 可能会有的提示
@@ -52,6 +53,8 @@ $ python .\download_assets.py
 `ba_jp_bundles` 文件夹是 Unity Bundle (AssetBundles?)
 
 `ba_jp_media` 文件夹是媒体文件（过场 CG，音乐等）
+
+`ba_jp_table` 文件夹我猜是具体战斗数据（TableBundle）
 
 ## 辅助工具
 

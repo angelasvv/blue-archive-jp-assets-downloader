@@ -19,6 +19,8 @@ session = requests.Session()
 # set up constants
 BA_JP_BUNDLES_DIR = os.path.join(os.path.dirname(__file__), 'ba_jp_bundles')
 BA_JP_MEDIA_DIR = os.path.join(os.path.dirname(__file__), 'ba_jp_media')
+BA_JP_TABLE_DIR = os.path.join(os.path.dirname(__file__), 'ba_jp_table')
+dirs = [BA_JP_BUNDLES_DIR, BA_JP_MEDIA_DIR, BA_JP_TABLE_DIR]
 
 BA_JP_VERSION_METADATA_TEMPLATE = "https://yostar-serverinfo.bluearchiveyostar.com/{}.json"
 
@@ -28,10 +30,12 @@ BA_JP_IOS_BUNDLE_DOWNLOAD_INFO_TEMPLATE = '{}/iOS/bundleDownloadInfo.json'
 BA_JP_IOS_BUNDLE_TEMPLATE = '{}/iOS/'
 BA_JP_MEDIA_CATALOG_TEMPLATE = '{}/MediaResources/MediaCatalog.json'
 BA_JP_MEDIA_BASEURL_TEMPLATE = '{}/MediaResources/'
+BA_JP_TABLE_BUNDLES_BASEURL_TEMPLATE = '{}/TableBundles/'
+BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE = '{}/TableBundles/TableCatalog.json'
 
 # create download directories
-os.makedirs(BA_JP_BUNDLES_DIR, exist_ok=True)
-os.makedirs(BA_JP_MEDIA_DIR, exist_ok=True)
+for d in dirs:
+    os.makedirs(d, exist_ok=True)
 
 
 def download_ba_jp_bundle(bundle_base_url: str, bundles: list, output_dir: str) -> Tuple[int, int, int]:
@@ -95,6 +99,32 @@ def download_ba_jp_media(media_base_url: str, media_list: dict, output_dir: str)
             skipped_count += 1
     return len(media_list), downloaded_count, skipped_count
 
+def download_ba_jp_table(table_base_url: str, table_list: dict, output_dir: str) -> Tuple[int, int, int]:
+    '''
+    returns:
+        table count given, 
+        downloaded,
+        skipped
+    '''
+    downloaded_count = 0
+    skipped_count = 0
+    for table_key in table_list:
+        # here, table_key is the table name
+        table = table_list[table_key]
+        table_name = table['Name']
+        table_local_path = os.path.join(output_dir, table_name)
+        url = f'{table_base_url}{table_name}'
+        if not (os.path.exists(table_local_path) and os.path.getsize(table_local_path) == table["Size"]):
+            logger.info(f'Downloading {table_name} from {url}')
+            data = session.get(url).content
+            with open(table_local_path, "wb") as f:
+                f.write(data)
+            logger.info(f'{table_name} written to {table_local_path}')
+            downloaded_count += 1
+        else:
+            logger.info(f'Skipping {table_name} as it already exists')
+            skipped_count += 1
+    return len(table_list), downloaded_count, skipped_count
 
 current_version_assets_base_url = requests.get(BA_JP_VERSION_METADATA_TEMPLATE.format(current_version)).json()[
     "ConnectionGroups"][0]['OverrideConnectionGroups'][-1]['AddressablesCatalogUrlRoot']
@@ -147,8 +177,40 @@ except:
     # should check if the status code is 403
     logger.warning(f'Provided MediaCatalog ({BA_JP_MEDIA_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
 
+# {
+#     "Table": {
+#         "Excel.zip": {
+#             "Name": "Excel.zip",
+#             "Size": 72025333,
+#             "Crc": 875393033,
+#             "isInbuild": false,
+#             "isChanged": false,
+#             "Includes": [
+#                 "rawdata/table/excel/academyfavorscheduleexceltable.bytes",
+#                 "rawdata/table/excel/academylocationexceltable.bytes",
+#                 "rawdata/table/excel/academylocationrankexceltable.bytes",
+#                 "rawdata/table/excel/academymessanger1exceltable.bytes",
+#                 "rawdata/table/excel/academymessanger2exceltable.bytes",
+#                 ...
+#            ]
+#         },
+#         ...
+#     },
+#    "BundleMap": null
+# }
+try:
+    table_to_download = requests.get(BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE.format(
+        current_version_assets_base_url)).json()['Table']
+    total_table_count, downloaded_table_count, skipped_table_count = download_ba_jp_table(BA_JP_TABLE_BUNDLES_BASEURL_TEMPLATE.format(
+        current_version_assets_base_url), table_to_download, BA_JP_TABLE_DIR)
+except:
+    # should check if the status code is 403
+    logger.warning(f'TableCatalog ({BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+
 logger.info('Script finished.')
 if globals().get('total_bundle_count'):
     logger.info(f'Bundle: {total_bundle_count} total, {downloaded_bundle_count} downloaded, {skipped_bundle_count} skipped.')
 if globals().get('total_media_count'):
     logger.info(f'Media: {total_media_count} total, {downloaded_media_count} downloaded, {skipped_media_count} skipped.')
+if globals().get('total_table_count'):
+    logger.info(f'table: {total_table_count} total, {downloaded_table_count} downloaded, {skipped_table_count} skipped.')

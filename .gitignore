@@ -8,6 +8,8 @@ main.*/
 ba_jp_bundles/
 ba_jp_bundles_extracted/
 ba_jp_media/
+ba_jp_table/
+ba_jp_table_extracted/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
