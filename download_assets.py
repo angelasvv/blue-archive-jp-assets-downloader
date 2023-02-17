@@ -25,13 +25,13 @@ dirs = [BA_JP_BUNDLES_DIR, BA_JP_MEDIA_DIR, BA_JP_TABLE_DIR]
 BA_JP_VERSION_METADATA_TEMPLATE = "https://yostar-serverinfo.bluearchiveyostar.com/{}.json"
 
 BA_JP_ANDROID_BUNDLE_DOWNLOAD_INFO_TEMPLATE = '{}/Android/bundleDownloadInfo.json'
-BA_JP_ANDROID_BUNDLE_TEMPLATE = '{}/Android/'
+BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE = '{}/Android/'
 BA_JP_IOS_BUNDLE_DOWNLOAD_INFO_TEMPLATE = '{}/iOS/bundleDownloadInfo.json'
-BA_JP_IOS_BUNDLE_TEMPLATE = '{}/iOS/'
+BA_JP_IOS_BUNDLE_BASEURL_TEMPLATE = '{}/iOS/'
 BA_JP_MEDIA_CATALOG_TEMPLATE = '{}/MediaResources/MediaCatalog.json'
 BA_JP_MEDIA_BASEURL_TEMPLATE = '{}/MediaResources/'
-BA_JP_TABLE_BUNDLES_BASEURL_TEMPLATE = '{}/TableBundles/'
 BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE = '{}/TableBundles/TableCatalog.json'
+BA_JP_TABLE_BUNDLES_BASEURL_TEMPLATE = '{}/TableBundles/'
 
 # create download directories
 for d in dirs:
@@ -146,11 +146,11 @@ logger.info('Current version assets base url (AddressablesCatalogUrlRoot): %s',
 try:
     bundles_to_download = requests.get(BA_JP_ANDROID_BUNDLE_DOWNLOAD_INFO_TEMPLATE.format(
         current_version_assets_base_url)).json()['BundleFiles']
-    total_bundle_count, downloaded_bundle_count, skipped_bundle_count = download_ba_jp_bundle(BA_JP_ANDROID_BUNDLE_TEMPLATE.format(
+    total_bundle_count, downloaded_bundle_count, skipped_bundle_count = download_ba_jp_bundle(BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(
         current_version_assets_base_url), bundles_to_download, BA_JP_BUNDLES_DIR)
 except:
     # should check if the status code is 403
-    logger.warning(f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    logger.warning(f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
 
 
 
