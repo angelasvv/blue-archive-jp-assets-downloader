@@ -6,7 +6,7 @@ import os
 # set current version from environ
 current_version = os.environ.get('BA_JP_CURRENT_VERSION', None)
 if not current_version:
-    current_version = 'r52_uulekwyjhzir122lpbrw'
+    current_version = 'r53_n0nd3oim9zdznen449q4'
 
 # set up logging
 logging.basicConfig(level=logging.INFO,
