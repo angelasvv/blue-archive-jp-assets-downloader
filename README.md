@@ -129,6 +129,9 @@ python .\download_latest_obb.py
 
 ![2N_ GDAG%LA_CKB )J{SVQP](https://user-images.githubusercontent.com/38759782/218412572-eb691657-0669-47f8-9376-db5598703b47.gif)
 
+最害怕的一集
+
+![image](https://user-images.githubusercontent.com/38759782/221453505-a0da27ad-6d89-40fa-afcb-ee7cf72abb14.png)
 
   
 </p>
