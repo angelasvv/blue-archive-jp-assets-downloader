@@ -3,6 +3,7 @@
 import os
 import logging
 import UnityPy
+import json
 
 # set up logging
 logging.basicConfig(level=logging.INFO,
@@ -48,6 +49,20 @@ def unpack_all_assets(source_folder : str, destination_folder : str):
                         data = obj.read()
                         with open(dest, "wb") as f:
                             f.write(bytes(data.script))
+                    elif obj.type.name == "MonoBehaviour":
+                        # export asset
+                        if obj.serialized_type.nodes:
+                            # ext = ".json"
+                            export = json.dumps(
+                                obj.read_typetree(),
+                                indent=4,
+                                ensure_ascii=False
+                            ).encode("utf8")
+                        else:
+                            # ext = ".bin"
+                            export = data.raw_data
+                        with open(f'{dest}{ext}', "wb") as f:
+                            f.write(bytes(export))
                     else:
                         logger.warn(f'Unhandled asset type: {obj.type.name}')
 
