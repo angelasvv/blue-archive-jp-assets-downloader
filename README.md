@@ -87,12 +87,27 @@ python .\download_latest_obb.py
 
 ### 解包 assets
 
-* `extract_bundles.py`: 解包由此下载脚本下载的 bundles，并默认存储于 `extract_bundles` 文件夹。需要 `UnityPy==1.7.21`。建议在 Linux 环境下运行（WSL 也可以）。从 `UnityPy` [样例](https://github.com/K0lb3/UnityPy#example)修改而来
+* `extract_bundles.py`: 解包由此下载脚本下载的 bundles，并默认存储于 `ba_jp_bundles_extracted` 文件夹。需要 `UnityPy==1.7.21`。建议在 Linux 环境下运行（WSL 也可以）。从 `UnityPy` [样例](https://github.com/K0lb3/UnityPy#example)修改而来
 
-* 默认解包 `Texture2D`，`Sprite`，`TextAsset`。这些类型的资源足够运行（包里的）Spine 动画
+* 默认解包 `Texture2D`，`Sprite`，`TextAsset`，`MonoBehaviour`。前三者足够运行（包里的）Spine 动画。
 
 ```bash
-> $ python3 ./extract_bundles.py                                                                                                                      
+> $ python3 ./extract_bundles.py
+```
+
+### 解包 TableBundles
+
+* `extract_table_bundles`: 解包由此下载脚本下载的 TableBundles，并默认存储于 `ba_jp_table_extracted` 文件夹。需要 `xxhash`。`MersenneTwister` 的实现从 [Blue-Archive---Asset-Downloader](https://github.com/K0lb3/Blue-Archive---Asset-Downloader/blob/main/lib/MersenneTwister.py) 借用。
+
+
+```pwsh
+python .\extract_table_bundles.py
+2023-03-01 08:43:50,811 - root.unzip_all_table_bundles - INFO - Loading from D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table\Battle.zip
+2023-03-01 08:43:50,813 - root.unzip_all_table_bundles - INFO - Reading animationmappingdata.json from D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table\Battle.zip
+2023-03-01 08:43:50,815 - root.unzip_all_table_bundles - INFO - Extracting animationmappingdata.json to D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table_extracted\Battle
+2023-03-01 08:43:50,815 - root.unzip_all_table_bundles - INFO - Extracted animationmappingdata.json to D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table_extracted\Battle\animationmappingdata.json
+2023-03-01 08:43:50,815 - root.unzip_all_table_bundles - INFO - Reading logiceffectdata.json from D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table\Battle.zip
+...
 ```
 
 ## 💈
