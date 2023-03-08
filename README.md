@@ -1,6 +1,19 @@
 # blue-archive-jp-assets-downloader
 Assets downloader for Blue Archive (ブルーアーカイブ), a small project that downloads all assets of Blue Archive (JP Version) .
 
+## **免责声明/Disclaimer**
+
+根据[日服官方](https://twitter.com/Blue_ArchiveJP/status/1633361958916456448)于今日下午（2023-03-08T15:00+0800）的声明：
+
+> 【重要なお知らせ】
+>「ブルーアーカイブ」の非公開情報を不正に取得し、SNSなどで情報を広める(リーク)行為に関するお知らせを掲載いたします。
+>
+>リークは禁止行為ですので、今後発見した場合、法的措置を含めた厳しい対応を検討いたします。
+
+**The relevant content of this repo involves the actual interests of Nexon/Yostar. This repo This repo and code are meant for learning and research purposes on mobile platforms only. Do not use this tool for commercial or illegal purposes, or publish anything related to 非公開情報 in public places (SNS, etc.).  Do as you please with it, but accept any and all responsibility for your actions.**
+
+**本仓库相关内容已涉及 Nexon/Yostar 的实际利益。本仓库仅用于移动应用安全研究与学习。请勿将此工具用于商业或者非法用途，或在公开场合（SNS 等）发布任何和非公開情報有关系的事物。如果阁下愿意继续阅读，请您承诺将为自己的全部行为负责。**
+
 ## 对版本哈希 (version hash) 的说明
 
 碧蓝档案日服下载资源的方式与国际服不一样，可以参照 [这里](https://github.com/xiongnemo/blue-archive-jp-assets-downloader/issues/1)。
