@@ -3,16 +3,45 @@ Assets downloader for Blue Archive (ブルーアーカイブ), a small project t
 
 ## **免责声明/Disclaimer**
 
-根据[日服官方](https://twitter.com/Blue_ArchiveJP/status/1633361958916456448)于今日下午（2023-03-08T15:00+0800）的声明：
+<details><summary>官方说明</summary>
+<p>
+
+根据[日服官方推特](https://twitter.com/Blue_ArchiveJP/status/1633361958916456448)于今日下午（2023-03-08T15:00+0800）的声明：
 
 > 【重要なお知らせ】
 >「ブルーアーカイブ」の非公開情報を不正に取得し、SNSなどで情報を広める(リーク)行為に関するお知らせを掲載いたします。
 >
 >リークは禁止行為ですので、今後発見した場合、法的措置を含めた厳しい対応を検討いたします。
 
+[详细说明](https://bluearchive.jp/news/newsJump/295)：
+
+> 現在、通常のご利用では取得できない非公開情報を不正に抜き取り、該当情報をリーク(※注1)する行為が確認されています。
+>
+> リーク行為は、運営スケジュールの進行に支障をきたすだけではなく、何よりゲーム内の演出や展開を期待していただいている皆様の体験を損なうことに繋がります。
+>
+> 今後、リーク行為を発見した場合、法的措置を含めた厳しい対応を検討いたします。
+>
+>
+>
+> 「ブルーアーカイブ」運営チームといたしましては、先生の皆様の期待、喜び、そして感動といった体験を大切にしたいと考えております。
+>
+> これからも先生の皆様に、感動できる様々な体験をご提供することを目指しながら、日々不正行為を監視し、その貴重な体験が損なわれないよう努めてまいります。
+>
+> ※注1
+>
+> リーク行為とは、正式公開前にデータの解析など、利用規約に違反する手段で、ゲーム内データ、およびコンテンツを不正に取得し、SNS等で拡散する不正行為を指します。
+>
+> また、非公開情報にはゲーム内の生徒画像、パラメーター、3Dモデル、あらゆる画像、音楽、映像およびテクスチャ、データテーブルなど通常のご利用では取得できないものが含まれております。
+
+</p>
+</details>
+
+
 **The relevant content of this repo involves the actual interests of Nexon/Yostar. This repo This repo and code are meant for learning and research purposes on mobile platforms only. Do not use this tool for commercial or illegal purposes, or publish anything related to 非公開情報 in public places (SNS, etc.).  Do as you please with it, but accept any and all responsibility for your actions.**
 
 **本仓库相关内容已涉及 Nexon/Yostar 的实际利益。本仓库仅用于移动应用安全研究与学习。请勿将此工具用于商业或者非法用途，或在公开场合（SNS 等）发布任何和非公開情報有关系的事物。如果阁下愿意继续阅读，请您承诺将为自己的全部行为负责。**
+
+~~把寿司人打鸡斯拉的感动还给我~~
 
 ## 对版本哈希 (version hash) 的说明
 
