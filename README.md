@@ -41,11 +41,12 @@ $ python .\download_assets.py
 ### 服务器维护时 (资源不可达) 可能会有的提示
 
 ```pwsh
-$ python .\download_assets.py
-2023-01-24 16:08:28,133 - __main__.<module> - INFO - Current version assets base url (AddressablesCatalogUrlRoot): https://prod-clientpatch.bluearchiveyostar.com/r52_1_27_uulekwyjhzir122lpbrw_2
-2023-01-24 16:08:28,403 - root.<module> - WARNING - Provided AddressablesCatalog (https://prod-clientpatch.bluearchiveyostar.com/r52_1_27_uulekwyjhzir122lpbrw_2/Android/) is not accessible at this time.
-2023-01-24 16:08:28,605 - root.<module> - WARNING - Provided MediaCatalog (https://prod-clientpatch.bluearchiveyostar.com/r52_1_27_uulekwyjhzir122lpbrw_2/MediaResources/) is not accessible at this time.
-2023-01-24 16:08:28,605 - root.<module> - INFO - Script finished.
+$ py .\download_assets.py
+2023-03-08 15:37:27,052 - __main__.<module> - INFO - Current version assets base url (AddressablesCatalogUrlRoot): https://prod-clientpatch.bluearchiveyostar.com/r53_1_29_k9al0rwmplkqmj9cn3ap
+2023-03-08 15:37:27,322 - __main__.<module> - WARNING - Provided AddressablesCatalog (https://prod-clientpatch.bluearchiveyostar.com/r53_1_29_k9al0rwmplkqmj9cn3ap/Android/) is not accessible at this time.
+2023-03-08 15:37:27,578 - __main__.<module> - WARNING - Provided MediaCatalog (https://prod-clientpatch.bluearchiveyostar.com/r53_1_29_k9al0rwmplkqmj9cn3ap/MediaResources/) is not accessible at this time.
+2023-03-08 15:37:27,783 - __main__.<module> - WARNING - TableCatalog (https://prod-clientpatch.bluearchiveyostar.com/r53_1_29_k9al0rwmplkqmj9cn3ap/TableBundles/TableCatalog.json) is not accessible at this time.
+2023-03-08 15:37:27,783 - __main__.<module> - INFO - Script finished.
 ```
 
 ## 存储
