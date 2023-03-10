@@ -37,7 +37,7 @@ Assets downloader for Blue Archive (ブルーアーカイブ), a small project t
 </details>
 
 
-**The relevant content of this repo involves the actual interests of Nexon/Yostar. This repo This repo and code are meant for learning and research purposes on mobile platforms only. Do not use this tool for commercial or illegal purposes, or publish anything related to 非公開情報 in public places (SNS, etc.).  Do as you please with it, but accept any and all responsibility for your actions.**
+**The relevant content of this repo involves the actual interests of Nexon/Yostar. This repo and code are meant for learning and research purposes on mobile platforms only. Do not use this tool for commercial or illegal purposes, or publish anything related to 非公開情報 in public places (SNS, etc.).  Do as you please with it, but accept any and all responsibility for your actions.**
 
 **本仓库相关内容已涉及 Nexon/Yostar 的实际利益。本仓库仅用于移动应用安全研究与学习。请勿将此工具用于商业或者非法用途，或在公开场合（SNS 等）发布任何和非公開情報有关系的事物。如果阁下愿意继续阅读，请您承诺将为自己的全部行为负责。**
 
