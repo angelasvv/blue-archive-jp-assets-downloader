@@ -101,6 +101,9 @@ $ py .\download_assets.py
 
 ## 辅助工具
 
+<details><summary>展开</summary>
+<p>
+
 ### 下载日服 APK
 
 `download_latest_apk.py`: 从 QooApp 下载其最新版本，并与官方做比照。修改自 [Blue-Archive---Asset-Downloader](https://github.com/K0lb3/Blue-Archive---Asset-Downloader)
@@ -152,6 +155,8 @@ python .\extract_table_bundles.py
 2023-03-01 08:43:50,815 - root.unzip_all_table_bundles - INFO - Reading logiceffectdata.json from D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table\Battle.zip
 ...
 ```
+</p>
+</details>
 
 ## 💈
 
