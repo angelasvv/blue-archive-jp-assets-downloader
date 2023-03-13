@@ -150,7 +150,12 @@ try:
         current_version_assets_base_url), bundles_to_download, BA_JP_BUNDLES_DIR)
 except:
     # should check if the status code is 403
-    logger.warning(f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    if bundles_to_download.status_code == "403":
+        logger.warning(f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    else:
+        logger.warning(f'Unexpected exception raised while handling provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+        import traceback
+        logger.error(traceback.format_exc())
 
 
 
@@ -175,7 +180,12 @@ try:
         current_version_assets_base_url), media_to_download, BA_JP_MEDIA_DIR)
 except:
     # should check if the status code is 403
-    logger.warning(f'Provided MediaCatalog ({BA_JP_MEDIA_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    if media_to_download.status_code == "403":
+        logger.warning(f'Provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    else:
+        logger.warning(f'Unexpected exception raised while handling provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+        import traceback
+        logger.error(traceback.format_exc())
 
 # {
 #     "Table": {
@@ -205,7 +215,12 @@ try:
         current_version_assets_base_url), table_to_download, BA_JP_TABLE_DIR)
 except:
     # should check if the status code is 403
-    logger.warning(f'TableCatalog ({BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    if table_to_download.status_code == "403":
+        logger.warning(f'Provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+    else:
+        logger.warning(f'Unexpected exception raised while handling provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+        import traceback
+        logger.error(traceback.format_exc())
 
 logger.info('Script finished.')
 if globals().get('total_bundle_count'):
