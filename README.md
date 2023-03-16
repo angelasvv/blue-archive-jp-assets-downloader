@@ -155,6 +155,45 @@ python .\extract_table_bundles.py
 2023-03-01 08:43:50,815 - root.unzip_all_table_bundles - INFO - Reading logiceffectdata.json from D:\UserData\Documents\GitHub\blue-archive-jp-assets-downloader\ba_jp_table\Battle.zip
 ...
 ```
+### 合并视频与音轨
+
+* 由 [lwd-temp](https://github.com/lwd-temp) 在 [pr/6](https://github.com/xiongnemo/blue-archive-jp-assets-downloader/pull/6) 中提供。
+* `combine_videos.py`: 合并由此下载脚本下载的视频文件（因为视频和音轨是分开存放的），并默认存储于 `ba_jp_media_combined` 文件夹。需要 `ffmpeg-python`。
+
+```pwsh
+py .\combine_videos.py        
+2023-03-16 21:40:13,083 - root.match_files - INFO - Found ba_jp_media\Cafe\PV\PV_1_Sound.ogg for ba_jp_media\Cafe\PV\PV_1_Video.mp4, score 5
+2023-03-16 21:40:13,126 - root.match_files - INFO - Found ba_jp_media\Cafe\PV\PV_2_Sound.ogg for ba_jp_media\Cafe\PV\PV_2_Video.mp4, score 5
+2023-03-16 21:40:13,169 - root.match_files - INFO - Found ba_jp_media\Cafe\PV\PV_3_Sound.ogg for ba_jp_media\Cafe\PV\PV_3_Video.mp4, score 5
+2023-03-16 21:40:13,212 - root.match_files - INFO - Found ba_jp_media\Cafe\PV\PV_4_Sound.ogg for ba_jp_media\Cafe\PV\PV_4_Video.mp4, score 5
+2023-03-16 21:40:13,258 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10000_Title_Sound.ogg for ba_jp_media\Scenario\Event\10000_Title_Video.mp4, score 12
+2023-03-16 21:40:13,304 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10001_Title_Sound.ogg for ba_jp_media\Scenario\Event\10001_Title_Video.mp4, score 12
+2023-03-16 21:40:13,350 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10002_Title_Sound.ogg for ba_jp_media\Scenario\Event\10002_Title_Video.mp4, score 12
+2023-03-16 21:40:13,396 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10003_Title_Sound.ogg for ba_jp_media\Scenario\Event\10003_Title_Video.mp4, score 12
+2023-03-16 21:40:13,441 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10004_Title_Sound.ogg for ba_jp_media\Scenario\Event\10004_Title_Video.mp4, score 12
+2023-03-16 21:40:13,487 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10005_Title_Sound.ogg for ba_jp_media\Scenario\Event\10005_Title_Video.mp4, score 12
+2023-03-16 21:40:13,535 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10006_Title_Sound.ogg for ba_jp_media\Scenario\Event\10006_Title_Video.mp4, score 12
+2023-03-16 21:40:13,581 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10007_Title_Sound.ogg for ba_jp_media\Scenario\Event\10007_Title_Video.mp4, score 12
+2023-03-16 21:40:13,627 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10008_Title_Sound.ogg for ba_jp_media\Scenario\Event\10008_Title_Video.mp4, score 12
+2023-03-16 21:40:13,673 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10009_Title_Sound.ogg for ba_jp_media\Scenario\Event\10009_Title_Video.mp4, score 12
+2023-03-16 21:40:13,719 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10010_Title_Sound.ogg for ba_jp_media\Scenario\Event\10010_Title_Video.mp4, score 12
+2023-03-16 21:40:13,765 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10011_Title_Sound.ogg for ba_jp_media\Scenario\Event\10011_Title_Video.mp4, score 12
+2023-03-16 21:40:13,811 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10012_Title_Sound.ogg for ba_jp_media\Scenario\Event\10012_Title_Video.mp4, score 12
+2023-03-16 21:40:13,857 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10013_Title_Sound.ogg for ba_jp_media\Scenario\Event\10013_Title_Video.mp4, score 12
+2023-03-16 21:40:13,903 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10014_Title_Sound.ogg for ba_jp_media\Scenario\Event\10014_Title_Video.mp4, score 12
+2023-03-16 21:40:13,948 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10015_Title_Sound.ogg for ba_jp_media\Scenario\Event\10015_Title_Video.mp4, score 12
+2023-03-16 21:40:13,999 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10016_Title_Sound.ogg for ba_jp_media\Scenario\Event\10016_Title_Video.mp4, score 12
+2023-03-16 21:40:14,045 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10017_Title_Sound.ogg for ba_jp_media\Scenario\Event\10017_Title_Video.mp4, score 12
+2023-03-16 21:40:14,092 - root.match_files - INFO - Found ba_jp_media\Scenario\Event\10018_Title_Sound.ogg for ba_jp_media\Scenario\Event\10018_Title_Video.mp4, score 12
+2023-03-16 21:40:14,137 - root.match_files - INFO - Found ba_jp_media\Scenario\Main\104000_ED_Sound.ogg for ba_jp_media\Scenario\Main\104000_ED_Video.mp4, score 10
+2023-03-16 21:40:14,181 - root.match_files - INFO - Found ba_jp_media\Scenario\Main\22000_MV_Sound.ogg for ba_jp_media\Scenario\Main\22000_MV_Video.mp4, score 9
+2023-03-16 21:40:14,227 - root.match_files - INFO - Found ba_jp_media\Scenario\Main\Test_01_Sound.ogg for ba_jp_media\Scenario\Main\Test_01_Video.mp4, score 8
+2023-03-16 21:40:18,925 - root.match_files - INFO - Found ba_jp_media\Audio\Videos\pv-a.ogg for ba_jp_media\Video\pv-v.mp4, score 3
+2023-03-16 21:40:18,925 - root.combine_and_output - INFO - Combining ba_jp_media\Cafe\PV\PV_1_Video.mp4 and ba_jp_media\Cafe\PV\PV_1_Sound.ogg to ba_jp_media_combined\PV_1_Video.mp4
+ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers
+...
+```
+
 </p>
 </details>
 
