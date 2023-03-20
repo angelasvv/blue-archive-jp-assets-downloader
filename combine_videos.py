@@ -5,6 +5,7 @@
 # 需要ffmpeg在PATH内
 import logging
 import os
+import shutil
 
 import ffmpeg
 
@@ -37,7 +38,8 @@ def match_files(mp4_files, ogg_files):
             ogg_filename = os.path.basename(ogg_file)
             max_len = max(len(mp4_filename), len(ogg_filename))
             mp4_filename = mp4_filename.ljust(max_len, "V")
-            ogg_filename = ogg_filename.ljust(max_len, "A")
+            ogg_filename = ogg_filename.replace(
+                "Sound", "Video").ljust(max_len, "A")
             # print(ogg_filename)
             for i in range(max_len):
                 if mp4_filename[i] == ogg_filename[i]:
@@ -51,6 +53,9 @@ def match_files(mp4_files, ogg_files):
             matched_pairs.append((mp4_file, best_match, best_score))
             logging.info(
                 f'Found {best_match} for {mp4_file}, score {best_score}')
+        else:
+            matched_pairs.append((mp4_file, False, best_score))
+            logging.info(f'No best match for {mp4_file}')
     return matched_pairs
 
 
@@ -58,17 +63,28 @@ def combine_and_output(matched_pairs, output_path):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     for pair in matched_pairs:
-        input_mp4 = ffmpeg.input(pair[0])
-        input_ogg = ffmpeg.input(pair[1])
-        output_name = os.path.basename(pair[0]).split('.')[0] + '.mp4'
-        output_path_full = os.path.join(output_path, output_name)
-        logging.info(
-            f'Combining {pair[0]} and {pair[1]} to {output_path_full}')
-        (
-            ffmpeg.concat(input_mp4, input_ogg, v=1, a=1)
-            .output(output_path_full)
-            .run()
-        )
+        if pair[1]:
+            input_mp4 = ffmpeg.input(pair[0])
+            input_ogg = ffmpeg.input(pair[1])
+            output_name = os.path.basename(pair[0]).split('.')[0] + '.mp4'
+            output_path_full = os.path.join(output_path, output_name)
+            logging.info(
+                f'Combining {pair[0]} and {pair[1]} to {output_path_full}')
+            try:
+                (
+                    ffmpeg.concat(input_mp4, input_ogg, v=1, a=1)
+                    .output(output_path_full)
+                    .run()
+                )
+            except Exception as e:
+                import traceback
+                logging.error(traceback.format_exc())
+        else:
+            input_mp4 = ffmpeg.input(pair[0])
+            output_name = os.path.basename(pair[0]).split('.')[0] + '.mp4'
+            output_path_full = os.path.join(output_path, output_name)
+            shutil.copy(input_mp4, output_path_full)
+            logging.info(f'Copying {pair[0]} to {output_path_full}')
 
 
 path_to_search = 'ba_jp_media'
