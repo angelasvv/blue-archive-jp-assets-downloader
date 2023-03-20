@@ -80,7 +80,7 @@ def combine_and_output(matched_pairs, output_path):
                 import traceback
                 logging.error(traceback.format_exc())
         else:
-            input_mp4 = ffmpeg.input(pair[0])
+            input_mp4 = pair[0]
             output_name = os.path.basename(pair[0]).split('.')[0] + '.mp4'
             output_path_full = os.path.join(output_path, output_name)
             shutil.copy(input_mp4, output_path_full)
