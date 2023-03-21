@@ -49,7 +49,7 @@ Assets downloader for Blue Archive (ブルーアーカイブ), a small project t
 
 TL;DR: 每个大版本都有一个对应的 hash, 不更新 hash 就无法拉取别的版本的资源，从而无法 (自动) 拉取最新版本的资源。
 
-主脚本中使用到的 hash (如 `r52_uulekwyjhzir122lpbrw`）是通过抓包得出的。(首次更新, log 泄露等)
+主脚本中使用到的 hash （如 `r52_uulekwyjhzir122lpbrw`）是通过抓包得出的。(首次更新, log 泄露等)
 
 初步分析表明，这个字符串中的 `rxx` 部分可以直接从下载的 apk 中的资源提取，但后面的 (至少现在看起来是 random) 的字符串无法直接从 apk 或者资源包中提出。
 
@@ -93,11 +93,11 @@ $ py .\download_assets.py
 
 ## 存储
 
-`ba_jp_bundles` 文件夹是 Unity Bundle (AssetBundles?)
+`ba_jp_bundles` 文件夹是 Unity Bundle (AssetBundles)
 
-`ba_jp_media` 文件夹是媒体文件（过场 CG，音乐等）
+`ba_jp_media` 文件夹是媒体文件（预渲染的过场 CG，音乐等）
 
-`ba_jp_table` 文件夹我猜是具体战斗数据（TableBundle）
+`ba_jp_table` 文件夹是加密的几乎所有游戏文本资源（剧情文本，数值，技能等）（TableBundle）
 
 ## 辅助工具
 
