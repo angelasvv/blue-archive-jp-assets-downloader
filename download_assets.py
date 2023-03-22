@@ -144,13 +144,14 @@ logger.info('Current version assets base url (AddressablesCatalogUrlRoot): %s',
 #     ]
 # }
 try:
-    bundles_to_download = requests.get(BA_JP_ANDROID_BUNDLE_DOWNLOAD_INFO_TEMPLATE.format(
-        current_version_assets_base_url)).json()['BundleFiles']
+    bundles_request = requests.get(BA_JP_ANDROID_BUNDLE_DOWNLOAD_INFO_TEMPLATE.format(
+        current_version_assets_base_url))
+    bundles_to_download = bundles_request.json()['BundleFiles']
     total_bundle_count, downloaded_bundle_count, skipped_bundle_count = download_ba_jp_bundle(BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(
         current_version_assets_base_url), bundles_to_download, BA_JP_BUNDLES_DIR)
 except:
     # should check if the status code is 403
-    if bundles_to_download.status_code == "403":
+    if bundles_request.status_code == 403:
         logger.warning(f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
     else:
         logger.warning(f'Unexpected exception raised while handling provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
@@ -174,13 +175,14 @@ except:
 #     }
 # }
 try:
-    media_to_download = requests.get(BA_JP_MEDIA_CATALOG_TEMPLATE.format(
-        current_version_assets_base_url)).json()['Table']
+    media_request = requests.get(BA_JP_MEDIA_CATALOG_TEMPLATE.format(
+        current_version_assets_base_url))
+    media_to_download = media_request.json()['Table']
     total_media_count, downloaded_media_count, skipped_media_count = download_ba_jp_media(BA_JP_MEDIA_BASEURL_TEMPLATE.format(
         current_version_assets_base_url), media_to_download, BA_JP_MEDIA_DIR)
 except:
     # should check if the status code is 403
-    if media_to_download.status_code == "403":
+    if media_request.status_code == 403:
         logger.warning(f'Provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
     else:
         logger.warning(f'Unexpected exception raised while handling provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
@@ -209,13 +211,14 @@ except:
 #    "BundleMap": null
 # }
 try:
-    table_to_download = requests.get(BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE.format(
-        current_version_assets_base_url)).json()['Table']
+    table_request = requests.get(BA_JP_TABLE_BUNDLES_CATALOG_TEMPLATE.format(
+        current_version_assets_base_url))
+    table_to_download = table_request.json()['Table']
     total_table_count, downloaded_table_count, skipped_table_count = download_ba_jp_table(BA_JP_TABLE_BUNDLES_BASEURL_TEMPLATE.format(
         current_version_assets_base_url), table_to_download, BA_JP_TABLE_DIR)
 except:
     # should check if the status code is 403
-    if table_to_download.status_code == "403":
+    if table_request.status_code == 403:
         logger.warning(f'Provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
     else:
         logger.warning(f'Unexpected exception raised while handling provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
