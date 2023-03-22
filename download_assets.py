@@ -57,7 +57,8 @@ def download_ba_jp_bundle(bundle_base_url: str, bundles: list, output_dir: str) 
             with open(bundle_local_path, "wb") as f:
                 f.write(data)
             if len(data) != bundle["Size"]:
-                logger.warn(f'Size mismatch for {bundle_name}: {len(data)}, should be {bundle["Size"]}')
+                logger.warn(
+                    f'Size mismatch for {bundle_name}: {len(data)}, should be {bundle["Size"]}')
             logger.info(f'{bundle_name} written to {bundle_local_path}')
             downloaded_count += 1
         else:
@@ -99,6 +100,7 @@ def download_ba_jp_media(media_base_url: str, media_list: dict, output_dir: str)
             skipped_count += 1
     return len(media_list), downloaded_count, skipped_count
 
+
 def download_ba_jp_table(table_base_url: str, table_list: dict, output_dir: str) -> Tuple[int, int, int]:
     '''
     returns:
@@ -126,6 +128,7 @@ def download_ba_jp_table(table_base_url: str, table_list: dict, output_dir: str)
             skipped_count += 1
     return len(table_list), downloaded_count, skipped_count
 
+
 current_version_assets_base_url = requests.get(BA_JP_VERSION_METADATA_TEMPLATE.format(current_version)).json()[
     "ConnectionGroups"][0]['OverrideConnectionGroups'][-1]['AddressablesCatalogUrlRoot']
 logger.info('Current version assets base url (AddressablesCatalogUrlRoot): %s',
@@ -152,12 +155,13 @@ try:
 except:
     # should check if the status code is 403
     if bundles_request.status_code == 403:
-        logger.warning(f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+        logger.warning(
+            f'Provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
     else:
-        logger.warning(f'Unexpected exception raised while handling provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+        logger.warning(
+            f'Unexpected exception raised while handling provided AddressablesCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
         import traceback
         logger.error(traceback.format_exc())
-
 
 
 # {
@@ -183,9 +187,11 @@ try:
 except:
     # should check if the status code is 403
     if media_request.status_code == 403:
-        logger.warning(f'Provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+        logger.warning(
+            f'Provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
     else:
-        logger.warning(f'Unexpected exception raised while handling provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+        logger.warning(
+            f'Unexpected exception raised while handling provided MediaCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
         import traceback
         logger.error(traceback.format_exc())
 
@@ -219,16 +225,21 @@ try:
 except:
     # should check if the status code is 403
     if table_request.status_code == 403:
-        logger.warning(f'Provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+        logger.warning(
+            f'Provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
     else:
-        logger.warning(f'Unexpected exception raised while handling provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+        logger.warning(
+            f'Unexpected exception raised while handling provided TableCatalog ({BA_JP_ANDROID_BUNDLE_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
         import traceback
         logger.error(traceback.format_exc())
 
 logger.info('Script finished.')
 if globals().get('total_bundle_count'):
-    logger.info(f'Bundle: {total_bundle_count} total, {downloaded_bundle_count} downloaded, {skipped_bundle_count} skipped.')
+    logger.info(
+        f'Bundle: {total_bundle_count} total, {downloaded_bundle_count} downloaded, {skipped_bundle_count} skipped.')
 if globals().get('total_media_count'):
-    logger.info(f'Media: {total_media_count} total, {downloaded_media_count} downloaded, {skipped_media_count} skipped.')
+    logger.info(
+        f'Media: {total_media_count} total, {downloaded_media_count} downloaded, {skipped_media_count} skipped.')
 if globals().get('total_table_count'):
-    logger.info(f'table: {total_table_count} total, {downloaded_table_count} downloaded, {skipped_table_count} skipped.')
+    logger.info(
+        f'table: {total_table_count} total, {downloaded_table_count} downloaded, {skipped_table_count} skipped.')
