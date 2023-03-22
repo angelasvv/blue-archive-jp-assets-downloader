@@ -6,8 +6,8 @@
 import logging
 import os
 import shutil
-
-import ffmpeg
+import sys
+import subprocess
 
 # set up logging
 logging.basicConfig(level=logging.INFO,
@@ -64,21 +64,30 @@ def combine_and_output(matched_pairs, output_path):
         os.makedirs(output_path)
     for pair in matched_pairs:
         if pair[1]:
-            input_mp4 = ffmpeg.input(pair[0])
-            input_ogg = ffmpeg.input(pair[1])
+            # input_mp4 = ffmpeg.input(pair[0])
+            # input_ogg = ffmpeg.input(pair[1])
             output_name = os.path.basename(pair[0]).split('.')[0] + '.mp4'
-            output_path_full = os.path.join(output_path, output_name)
-            logging.info(
-                f'Combining {pair[0]} and {pair[1]} to {output_path_full}')
-            try:
-                (
-                    ffmpeg.concat(input_mp4, input_ogg, v=1, a=1)
-                    .output(output_path_full)
-                    .run()
-                )
-            except Exception as e:
-                import traceback
-                logging.error(traceback.format_exc())
+            os.chdir(output_path)
+            if not os.path.exists(output_name):
+                output_path_full = os.path.join(output_path, output_name)
+                # another way to process video and vocal
+                input_mp4 = pair[0]
+                input_ogg = pair[1]
+                cmd = f'ffmpeg -i {input_mp4} -i {input_ogg} -loglevel quiet -acodec copy -vcodec copy {output_path_full}'
+                logging.info(
+                    f'Combining {pair[0]} and {pair[1]} to {output_path_full}')
+                try:
+                    (
+                        # ffmpeg.concat(input_mp4, input_ogg, v=1, a=1)
+                        # .output(output_path_full)
+                        # .run()
+                        subprocess.call(cmd)
+                    )
+                except Exception as e:
+                    import traceback
+                    logging.error(traceback.format_exc())
+            else:
+                continue
         else:
             input_mp4 = pair[0]
             output_name = os.path.basename(pair[0]).split('.')[0] + '.mp4'
@@ -87,8 +96,9 @@ def combine_and_output(matched_pairs, output_path):
             logging.info(f'Copying {pair[0]} to {output_path_full}')
 
 
-path_to_search = 'ba_jp_media'
-output_path = 'ba_jp_media_combined'
+source_path = sys.path[0]
+path_to_search = source_path + r'/ba_jp_media'
+output_path = source_path + r'/ba_jp_media_combined'
 
 mp4_files, ogg_files = find_matching_files(path_to_search)
 matched_pairs = match_files(mp4_files, ogg_files)
