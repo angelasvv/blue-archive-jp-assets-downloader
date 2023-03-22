@@ -1,4 +1,4 @@
 requests
-UnityPy==1.7.21
+UnityPy==1.9.26
 xxhash
 ffmpeg-python

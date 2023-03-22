@@ -133,7 +133,7 @@ python .\download_latest_obb.py
 
 ### 解包 assets
 
-* `extract_bundles.py`: 解包由此下载脚本下载的 bundles，并默认存储于 `ba_jp_bundles_extracted` 文件夹。需要 `UnityPy==1.7.21`。建议在 Linux 环境下运行（WSL 也可以）。从 `UnityPy` [样例](https://github.com/K0lb3/UnityPy#example)修改而来
+* `extract_bundles.py`: 解包由此下载脚本下载的 bundles，并默认存储于 `ba_jp_bundles_extracted` 文件夹。需要 `UnityPy==1.9.26`。从 `UnityPy` [样例](https://github.com/K0lb3/UnityPy#example)修改而来
 
 * 默认解包 `Texture2D`，`Sprite`，`TextAsset`，`MonoBehaviour`。前三者足够运行（包里的）Spine 动画。
 
