@@ -78,7 +78,7 @@ def download_ba_jp_media(media_base_url: str, media_list: dict, output_dir: str)
     skipped_count = 0
     for media_key in media_list:
         media = media_list[media_key]
-        media_name = media['fileName']
+        media_name = media['FileName']
         media_path = media['path']
         media_local_path = os.path.join(output_dir, media_path)
         url = f'{media_base_url}{media_path}'
