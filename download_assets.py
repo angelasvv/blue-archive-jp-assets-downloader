@@ -357,7 +357,7 @@ def main_menu():
     while True:
         print("\n=== Blue Archive JP Downloader Menu ===")
         print("1. Download Android Bundles")
-        print("2. Download PatchPack (zip + bundles)")        
+        print("2. Download PatchPack (zip)")        
         print("3. Download Media Files")
         print("4. Download TABLE Files")
         print("5. Download All")
