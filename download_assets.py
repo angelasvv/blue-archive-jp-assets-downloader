@@ -251,14 +251,13 @@ def process_patchpack():
             BA_JP_PATCHPACK_DIR
         )
 
-    except:
-        # should check if the status code is 403
-        if bundles_request.status_code == 403:
+    except Exception:
+        if 'patch_pack_request' in locals() and patch_pack_request.status_code == 403:
             logger.warning(
-                f'Provided AddressablesCatalog ({BA_JP_ANDROID_PATCH_PACK_BASEURL_TEMPLATE.format(current_version_assets_base_url)}) is not accessible at this time.')
+                f'Provided PatchPack ({patch_pack_url}) is not accessible at this time (403).')
         else:
             logger.warning(
-                f'Unexpected exception raised while handling provided AddressablesCatalog ({BA_JP_ANDROID_PATCH_PACK_BASEURL_TEMPLATE.format(current_version_assets_base_url)}).')
+                f'Unexpected exception raised while handling PatchPack ({patch_pack_url}).')
             import traceback
             logger.error(traceback.format_exc())
 #PATCH PACK#
